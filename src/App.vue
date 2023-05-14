@@ -2,8 +2,8 @@
   <div>
     <div class="todoapp">
       <TodoHeader @create="addTaskFn"></TodoHeader>
-      <TodoMain :arr="list" @deleteTask="deleteData"></TodoMain>
-      <TodoFooter :farr="list"></TodoFooter>
+      <TodoMain :arr="showArr" @deleteTask="deleteData"></TodoMain>
+      <TodoFooter :farr="showArr" @changeType="typeFn"></TodoFooter>
     </div>
   </div>
 </template>
@@ -22,7 +22,8 @@ export default {
         { id: 100, name: "吃饭", isDone: true },
         { id: 201, name: "睡觉", isDone: false },
         { id: 103, name: "打豆豆", isDone: true },
-      ]
+      ],
+      getSel: 'all'// 默认显示全部
     }
   },
   components: {
@@ -42,7 +43,23 @@ export default {
     deleteData(id) {
       let index =  this.list.findIndex(obj => obj.id === id)
        this.list.splice(index, 1);
+    },
+    typeFn(selected) {
+       this.getSel = selected;
     }
+  },
+  //使用计算属性来进行展示数据
+  computed: {
+     showArr() {
+        if (this.getSel === 'yes') {
+          // filter(): 根据条件过滤数组元素,返回自己需要的数组元素
+           return this.list.filter(obj => obj.isDone === true);
+        } else if (this.getSel === 'no') {
+           return this.list.filter(obj => obj.isDone === false);
+        } else {
+           return this.list;
+        }
+     }
   }
 }
 </script>
