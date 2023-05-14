@@ -1,6 +1,10 @@
 <template>
     <footer class="footer">
-      <span class="todo-count">剩余<strong>数量值</strong></span>
+        <!-- 
+            这里用的是计算属性进行显示计数的
+            也可以使用 farr.length 也是可以的
+         -->
+      <span class="todo-count">剩余<strong>{{ count }}</strong></span>
       <ul class="filters">
         <li>
           <a class="selected" href="javascript:;" >全部</a>
@@ -18,6 +22,13 @@
   
   <script>
   export default {
-  
+      props: ['farr'],
+      // 使用计算属性来进行计数任务数量
+      computed: {
+         count() {
+            return this.farr.length;
+         }
+      }
+      
   }
   </script>

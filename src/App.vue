@@ -3,7 +3,7 @@
     <div class="todoapp">
       <TodoHeader @create="addTaskFn"></TodoHeader>
       <TodoMain :arr="list" @deleteTask="deleteData"></TodoMain>
-      <TodoFooter></TodoFooter>
+      <TodoFooter :farr="list"></TodoFooter>
     </div>
   </div>
 </template>
