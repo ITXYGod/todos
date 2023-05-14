@@ -2,7 +2,7 @@
   <div>
     <div class="todoapp">
       <TodoHeader @create="addTaskFn"></TodoHeader>
-      <TodoMain :arr="list"></TodoMain>
+      <TodoMain :arr="list" @deleteTask="deleteData"></TodoMain>
       <TodoFooter></TodoFooter>
     </div>
   </div>
@@ -38,6 +38,10 @@ export default {
         name: task,
         isDone: false
       })
+    },
+    deleteData(id) {
+      let index =  this.list.findIndex(obj => obj.id === id)
+       this.list.splice(index, 1);
     }
   }
 }
