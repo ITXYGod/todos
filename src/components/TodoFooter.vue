@@ -16,7 +16,7 @@
           <a :class="{selected: isSel === 'yes'}" href="javascript:;" @click="isSel='yes'">已完成</a>
         </li>
       </ul>
-      <button class="clear-completed" >清除已完成</button>
+      <button class="clear-completed" @click="btnDelete">清除已完成</button>
     </footer>
   </template>
   
@@ -41,6 +41,9 @@
       methods: {
         btnswitchFn() {
            this.$emit('changeType', this.isSel);
+        },
+        btnDelete() {
+            this.$emit('clear');
         }
       }
       

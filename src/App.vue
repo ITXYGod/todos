@@ -3,7 +3,7 @@
     <div class="todoapp">
       <TodoHeader @create="addTaskFn"></TodoHeader>
       <TodoMain :arr="showArr" @deleteTask="deleteData"></TodoMain>
-      <TodoFooter :farr="showArr" @changeType="typeFn"></TodoFooter>
+      <TodoFooter :farr="showArr" @changeType="typeFn" @clear="clearFn"></TodoFooter>
     </div>
   </div>
 </template>
@@ -46,6 +46,9 @@ export default {
     },
     typeFn(selected) {
        this.getSel = selected;
+    },
+    clearFn() {
+       this.list = this.list.filter(obj => obj.isDone === false);
     }
   },
   //使用计算属性来进行展示数据
