@@ -18,11 +18,8 @@ import TodoFooter from './components/TodoFooter.vue';
 export default {
   data() {
     return {
-      list: [
-        { id: 100, name: "吃饭", isDone: true },
-        { id: 201, name: "睡觉", isDone: false },
-        { id: 103, name: "打豆豆", isDone: true },
-      ],
+      // JSON.parse():反序列化：将JSON字符串对象转化成JS对象
+      list: JSON.parse(localStorage.getItem('todoList')) || [],
       getSel: 'all'// 默认显示全部
     }
   },
@@ -61,6 +58,18 @@ export default {
            return this.list.filter(obj => obj.isDone === false);
         } else {
            return this.list;
+        }
+     }
+  },
+
+  // 数据缓存 侦听
+  watch: {
+     list: {
+        deep: true,
+        immediate: true,
+        handler() {
+          //JSON.stringify():序列化，将JS对象转换成JSON字符串
+           localStorage.setItem('todoList', JSON.stringify(this.list))
         }
      }
   }
