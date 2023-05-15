@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="todoapp">
-      <TodoHeader @create="addTaskFn"></TodoHeader>
+      <TodoHeader @create="addTaskFn" :arr="showArr"></TodoHeader>
       <TodoMain :arr="showArr" @deleteTask="deleteData"></TodoMain>
       <TodoFooter :farr="showArr" @changeType="typeFn" @clear="clearFn"></TodoFooter>
     </div>
